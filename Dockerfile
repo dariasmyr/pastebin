@@ -1,4 +1,4 @@
-FROM golang:alpine AS build
+FROM golang:latest AS build
 RUN apk update && apk add --no-cache gcc musl-dev
 WORKDIR /app
 COPY go.mod go.sum ./

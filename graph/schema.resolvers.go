@@ -6,24 +6,29 @@ package graph
 
 import (
 	"context"
+	"fmt"
 	"pastebin/graph/model"
 )
 
 // CreateDocument is the resolver for the createDocument field.
 func (r *mutationResolver) CreateDocument(ctx context.Context, input model.CreateDocumentInput) (*int, error) {
+	fmt.Println("CreateDocument mutation")
 	var id, err = r.DocumentService.CreateDocument(input.Value, input.AccessKey, *input.MaxViewCount, *input.TTLMs)
 	if err != nil {
 		return nil, err
 	}
+	fmt.Printf("CreateDocument %v", id)
 	return &id, nil
 }
 
 // DeleteDocument is the resolver for the deleteDocument field.
 func (r *mutationResolver) DeleteDocument(ctx context.Context, id int, accessKey string) (*bool, error) {
+	fmt.Println("DeleteDocument mutation")
 	success, err := r.DocumentService.DeleteDocument(id, accessKey)
 	if err != nil {
 		return nil, err
 	}
+	fmt.Printf("DeleteDocument %v", id)
 	return &success, nil
 }
 
@@ -38,6 +43,7 @@ func (r *mutationResolver) UpdateDocument(ctx context.Context, input model.Updat
 
 // GetDocument is the resolver for the getDocument field.
 func (r *queryResolver) GetDocument(ctx context.Context, id int) (*model.Document, error) {
+	fmt.Printf("GetDocument %v", id)
 	return r.DocumentService.GetDocument(id)
 }
 

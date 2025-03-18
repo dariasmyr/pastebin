@@ -13,7 +13,7 @@
 ## How to Run
 Сlone the repo:
 ```bash
-go get github.com/dariasmyr/handy-snippets-backend
+git clone github.com/dariasmyr/handy-snippets-backend
 ```
 
 ### Option 1: Run via Command Line
